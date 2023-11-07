@@ -1,20 +1,13 @@
-<script lang="ts">
+<script setup lang="ts">
 import { useTodosStore } from "@/stores/todos";
+import { ref } from "vue";
+const store = useTodosStore();
+const newTodoText = ref("");
 
-export default {
-  data() {
-    return {
-      store: useTodosStore(),
-      newTodoText: "",
-    };
-  },
-  methods: {
-    addTodoHandler(newTodoText: string) {
-      this.store.addTodo(newTodoText);
-      this.newTodoText = "";
-    },
-  },
-};
+function addTodoHandler(todoText: string) {
+  store.addTodo(todoText);
+  newTodoText.value = "";
+}
 </script>
 
 <template>

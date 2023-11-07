@@ -1,11 +1,5 @@
-<script lang="ts">
-export default {
-  data() {
-    return {
-      routes: [{ name: "Home", path: "/" }],
-    };
-  },
-};
+<script setup lang="ts">
+const routes = [{ name: "Home", path: "/" }];
 </script>
 
 <template>

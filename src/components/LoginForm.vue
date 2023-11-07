@@ -1,27 +1,20 @@
-<script lang="ts">
-export default {
-  data() {
-    return {
-      username: "",
-      password: "",
-      signedUpUser: { username: "Onur", password: "1234" },
-      hasError: false,
-    };
-  },
-  methods: {
-    loginHandler() {
-      if (
-        this.username === this.signedUpUser.username &&
-        this.password === this.signedUpUser.password
-      ) {
-        sessionStorage.isAuthenticated = true;
-        this.$router.push("/");
-      } else {
-        this.hasError = true;
-      }
-    },
-  },
-};
+<script setup lang="ts">
+import { ref } from "vue";
+import { useRouter } from "vue-router";
+const username = ref("");
+const password = ref("");
+const hasError = ref(false);
+const signedUpUser = { username: "Onur", password: "1234" };
+const router = useRouter();
+
+function loginHandler() {
+  if (username.value === signedUpUser.username && password.value === signedUpUser.password) {
+    sessionStorage.setItem("isAuthenticated", "true");
+    router.push("/");
+  } else {
+    hasError.value = true;
+  }
+}
 </script>
 
 <template>

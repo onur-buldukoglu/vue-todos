@@ -1,27 +1,20 @@
-<script lang="ts">
-import type { PropType } from "vue";
-import type { Todo } from "@/stores/todos";
+<script setup lang="ts">
 import { useTodosStore } from "@/stores/todos";
-export default {
-  props: {
-    todo: { type: Object as PropType<Todo>, required: true },
-  },
-  data() {
-    return { store: useTodosStore() };
-  },
-};
+import { defineProps } from "vue";
+const store = useTodosStore();
+const props = defineProps(["todo"]);
 </script>
 
 <template>
   <div class="todoItem">
-    <li :class="{ isCompleted: todo.completed }">
+    <li :class="{ isCompleted: props.todo.completed }">
       <input
         type="checkbox"
-        :value="todo.completed"
-        @change="store.toggleTodoComplete(todo.id)"
-      />{{ todo.text }}
+        :value="props.todo.completed"
+        @change="store.toggleTodoComplete(props.todo.id)"
+      />{{ props.todo.text }}
     </li>
-    <button @click="store.removeTodo(todo)">Remove</button>
+    <button @click="store.removeTodo(props.todo)">Remove</button>
   </div>
 </template>
 

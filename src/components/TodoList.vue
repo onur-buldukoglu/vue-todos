@@ -1,14 +1,8 @@
-<script lang="ts">
+<script setup lang="ts">
 import { useTodosStore } from "@/stores/todos";
 import TodoItem from "./TodoItem.vue";
-export default {
-  components: {
-    TodoItem,
-  },
-  data() {
-    return { store: useTodosStore() };
-  },
-};
+
+const store = useTodosStore();
 </script>
 
 <template>
